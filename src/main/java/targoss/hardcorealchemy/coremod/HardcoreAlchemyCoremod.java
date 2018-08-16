@@ -21,7 +21,6 @@ package targoss.hardcorealchemy.coremod;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
@@ -39,6 +38,7 @@ import targoss.hardcorealchemy.coremod.transform.TCraftingManager;
 import targoss.hardcorealchemy.coremod.transform.TDataVillage;
 import targoss.hardcorealchemy.coremod.transform.TDecayingCrops;
 import targoss.hardcorealchemy.coremod.transform.TEntityLivingBase;
+import targoss.hardcorealchemy.coremod.transform.TEntityPlayer;
 import targoss.hardcorealchemy.coremod.transform.THibernatingCrops;
 import targoss.hardcorealchemy.coremod.transform.TObjectProximityModifier;
 import targoss.hardcorealchemy.coremod.transform.TProjectEKeyHandler;
@@ -78,7 +78,8 @@ public class HardcoreAlchemyCoremod implements IFMLLoadingPlugin {
 				TRightClickHarvesting.class.getName(),
 				TClassInheritanceMultiMap.class.getName(),
 				TThaumcraftPlayerEvents.class.getName(),
-				TDataVillage.class.getName()
+                TDataVillage.class.getName(),
+                TEntityPlayer.class.getName()
 		};
 	}
 

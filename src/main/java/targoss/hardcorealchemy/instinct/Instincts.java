@@ -40,6 +40,7 @@ public class Instincts {
             .create();
     
     public static final InstinctFactory ATTACK_PREY_ONLY = instinct("attack_prey_only", InstinctAttackPreyOnly.class);
+    public static final InstinctFactory HOMESICK_NATURE = instinct("homesick_nature", InstinctHomesickNature.class);
     
     public static class InstinctFactory extends IForgeRegistryEntry.Impl<InstinctFactory> {
         public final Class<? extends IInstinct> instinctClass;

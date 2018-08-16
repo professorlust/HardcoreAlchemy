@@ -47,6 +47,11 @@ hardcorealchemy.instinct.attack_prey.enough_kills=The hunting urges start to fad
 hardcorealchemy.instinct.attack_prey.frenzy_start=You feel a thrill from the kill, and find yourself driven into a frenzy.
 hardcorealchemy.instinct.attack_prey.frenzy_end=You manage to kill what you can see, but you still want more.
 
+hardcorealchemy.instinct.homesick.nature.need=You yearn for the sun above your head and grass beneath your feet.
+hardcorealchemy.instinct.homesick.nature.activate=You feel the need to wander aimlessly through a verdant expanse.
+hardcorealchemy.instinct.homesick.nature.at_home=The presence of nature makes you feel at ease
+hardcorealchemy.instinct.homesick.nature.not_at_home=You feel saddened
+
 hardcorealchemy.magic.disabled.item=Your inhuman form prevents you from comprehending this magical item.
 hardcorealchemy.magic.disabled.block=Your inhuman form prevents you from comprehending this magical object.
 hardcorealchemy.magic.disabled.craft=Your inhuman form prevents you from crafting this magical object.

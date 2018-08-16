@@ -32,6 +32,8 @@ public class PacketHandler {
     
     public static void register() {
         PacketHandler packetHandler = new PacketHandler();
+        (new PingPong.Ping()).register();
+        (new PingPong.Pong()).register();
         (new MessageHumanity()).register();
         (new MessageKillCount()).register();
         (new MessageMorphState()).register();
@@ -40,6 +42,7 @@ public class PacketHandler {
         (new MessageInstinctActive()).register();
         (new MessageInstinctValue()).register();
         (new MessageInstinctAttackPreyOnly()).register();
+        (new MessageInstinctHomesickNature()).register();
     }
     
 }

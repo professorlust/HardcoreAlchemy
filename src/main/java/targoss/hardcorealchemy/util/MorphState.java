@@ -157,18 +157,23 @@ public class MorphState {
         }
         return false;
     }
+    
+    //TODO: Remove after testing
+    private static void l(String s) {
+        targoss.hardcorealchemy.HardcoreAlchemy.LOGGER.error(s);
+    }
 
-    public static void buildInstincts(ICapabilityInstinct instincts, EntityLivingBase morphEntity) {
+    public static void buildInstincts(ICapabilityInstinct instincts, EntityLivingBase morphEntity) {l("buildInstincts");
         instincts.clearInstincts();
         
-        if (morphEntity == null || !(morphEntity instanceof EntityLiving)) {
+        if (morphEntity == null || !(morphEntity instanceof EntityLiving)) {l(" improper morph");
             return;
         }
         EntityLiving morphedLiving = (EntityLiving)morphEntity;
         
-        for (InstinctFactory instinctFactory : Instincts.REGISTRY.getValues()) {
+        for (InstinctFactory instinctFactory : Instincts.REGISTRY.getValues()) {l(" checking instinct " + instinctFactory.getRegistryName());
             // No caching right now. Not many instincts to deal with.
-            if (instinctFactory.instinctObject.doesMorphEntityHaveInstinct(morphEntity)) {
+            if (instinctFactory.instinctObject.doesMorphEntityHaveInstinct(morphEntity)) {l("  has instinct. Adding...");
                 instincts.addInstinct(instinctFactory, morphEntity);
             }
         }

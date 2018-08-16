@@ -86,4 +86,8 @@ public class MiscVanilla {
         }
         return player.world;
     }
+    
+    public static int getWorldHeight(World world) {
+        return 128;
+    }
 }

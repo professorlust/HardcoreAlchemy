@@ -32,6 +32,7 @@ import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import targoss.hardcorealchemy.capability.instincts.ICapabilityInstinct;
+import targoss.hardcorealchemy.event.EventPlayerMoveWithHeading;
 
 /**
  * Object for altering player state for permanent morphs.
@@ -100,7 +101,15 @@ public interface IInstinct extends INBTSerializable<NBTTagCompound> {
      * Called on player ticks when the instinct
      * is active.
      */
-    void tick(EntityPlayer player);
+    public default void tick(EntityPlayer player) { };
+    
+    /**
+     * Called just before a player moves while the instinct
+     * is active, for precise control of movement.
+     * Do not use player.moveStrafing or player.moveForward.
+     * Use event.moveStrafing and event.moveForward instead.
+     */
+    public default void aboutToMove(EntityPlayer player, EventPlayerMoveWithHeading event) { };
     
     /**
      * Whether the player can use (right click) the block.

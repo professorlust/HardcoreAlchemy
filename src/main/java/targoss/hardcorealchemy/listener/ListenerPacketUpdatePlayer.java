@@ -25,6 +25,8 @@ import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
+import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import targoss.hardcorealchemy.capability.humanity.ICapabilityHumanity;
 import targoss.hardcorealchemy.capability.inactive.IInactiveCapabilities;
 import targoss.hardcorealchemy.capability.instincts.ICapabilityInstinct;
@@ -37,6 +39,7 @@ import targoss.hardcorealchemy.network.MessageInstinct;
 import targoss.hardcorealchemy.network.MessageKillCount;
 import targoss.hardcorealchemy.network.MessageMorphState;
 import targoss.hardcorealchemy.network.PacketHandler;
+import targoss.hardcorealchemy.network.PingPong;
 
 public class ListenerPacketUpdatePlayer extends ConfiguredListener {
     public ListenerPacketUpdatePlayer(Configs configs) {
@@ -108,5 +111,18 @@ public class ListenerPacketUpdatePlayer extends ConfiguredListener {
         if (instinct != null) {
             PacketHandler.INSTANCE.sendTo(new MessageInstinct(instinct), (EntityPlayerMP)player);
         }
+    }
+    
+    private static final int SERVER_PING_FREQUENCY = 5 * 20;
+    
+    
+    @SubscribeEvent
+    public void onPlayerClientPingServer(PlayerTickEvent event) {
+        if (event.phase != Phase.START ||
+                !event.player.world.isRemote ||
+                event.player.ticksExisted % SERVER_PING_FREQUENCY != 3) {
+            return;
+        }
+        PacketHandler.INSTANCE.sendToServer(new PingPong.Ping());
     }
 }

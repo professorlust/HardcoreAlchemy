@@ -53,6 +53,7 @@ import targoss.hardcorealchemy.capability.instincts.ICapabilityInstinct;
 import targoss.hardcorealchemy.capability.instincts.ICapabilityInstinct.InstinctEntry;
 import targoss.hardcorealchemy.capability.instincts.ProviderInstinct;
 import targoss.hardcorealchemy.config.Configs;
+import targoss.hardcorealchemy.event.EventPlayerMoveWithHeading;
 import targoss.hardcorealchemy.instinct.IInstinct;
 import targoss.hardcorealchemy.network.MessageInstinctActive;
 import targoss.hardcorealchemy.network.MessageInstinctValue;
@@ -249,6 +250,21 @@ public class ListenerPlayerInstinct extends ConfiguredListener {
         }
         
         return availableInstincts.get(selectedInstinct);
+    }
+    
+    @SubscribeEvent
+    public void onPlayerAboutToMove(EventPlayerMoveWithHeading event) {
+        EntityPlayer player = event.player;
+        ICapabilityInstinct instinct = player.getCapability(INSTINCT_CAPABILITY, null);
+        if (instinct == null) {
+            return;
+        }
+        IInstinct activeInstinct = instinct.getActiveInstinct();
+        if (activeInstinct == null) {
+            return;
+        }
+        
+        activeInstinct.aboutToMove(event.player, event);
     }
     
     @SubscribeEvent
